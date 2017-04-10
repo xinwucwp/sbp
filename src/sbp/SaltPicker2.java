@@ -13,11 +13,7 @@ import edu.mines.jtk.interp.*;
 import static edu.mines.jtk.util.ArrayMath.*;
 
 /**
- * 2D fast level set method.
- * <p>
- * Based on the works by Yonggang Shi and William Clem Karl, 2008, 
- * A Real-Time Algorithm for the Approximation of Level-Set-Based 
- * Curve Evolution.
+ * 2D salt boundary interpretation with optimal path picking.
  * @author Xinming Wu, Colorado School of Mines
  * @version 2016.16.07
  */
