@@ -343,7 +343,7 @@ public class SaltBoundaryPicker2 {
   }
 
 
-  private static void testImagePainterA() {
+  private static void testSaltPickerA() {
     int n1 = 850;
     int n2 = 1000;
     float[][] image = 
@@ -357,7 +357,7 @@ public class SaltBoundaryPicker2 {
     SaltBoundaryPicker2 sbp = new SaltBoundaryPicker2(image);
   }
 
-  private static void testImagePainterB() {
+  private static void testSaltPickerB() {
     int n1 = 280;
     int n2 = 260;
     float[][] image = readImage(n1,n2,"../../../data/seis/fls/bag/2d/sub1/gx.dat");
@@ -372,8 +372,8 @@ public class SaltBoundaryPicker2 {
   public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        testImagePainterA();
-        testImagePainterB();
+        testSaltPickerA();
+        testSaltPickerB();
       }
     });
   }
