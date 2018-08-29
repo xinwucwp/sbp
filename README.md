@@ -8,7 +8,7 @@ for 2D and 3D horizon extraction that is discussed in our Geophysics paper
 
 If you find this work helpful in your research, please cite:
 
-    @article{doi:wu2018least,
+    @article{doi:wu2018fast,
         author = {Xinming Wu and Sergey Fomel and Michael Hudec},
         title = {Fast salt boundary interpretation with optimal path picking},
         journal = {GEOPHYSICS},
