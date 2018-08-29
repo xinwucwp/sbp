@@ -2,7 +2,7 @@
 
 This repository contains computer programs written and used by 
 [Xinming Wu](http://www.jsg.utexas.edu/wu/) 
-for 2D and 3D horizon extraction that is discussed in our Geophysics paper 
+for salt boundary interpretation that is discussed in our Geophysics paper 
 [Fault salt bounary interpretation with optimal path picking]
 (http://www.jsg.utexas.edu/wu/files/wu2018FastSaltBoundaryInterpretationWithOptimalPathPicking.pdf).
 
