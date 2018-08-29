@@ -16,6 +16,7 @@ import javax.swing.*;
 import edu.mines.jtk.awt.*;
 import edu.mines.jtk.dsp.RecursiveExponentialFilter;
 import edu.mines.jtk.io.ArrayInputStream;
+import edu.mines.jtk.io.ArrayOutputStream;
 import edu.mines.jtk.mosaic.*;
 import static edu.mines.jtk.util.ArrayMath.*;
 
@@ -232,6 +233,8 @@ public class SaltBoundaryPicker2 {
     // Menus.
     JMenu fileMenu = new JMenu("File");
     fileMenu.setMnemonic('F');
+    fileMenu.add(new LoadSaltBoundary(_picker)).setMnemonic('l');
+    fileMenu.add(new SaveSaltBoundary(_picker)).setMnemonic('b');
     fileMenu.add(new SaveAsPngAction(_frame)).setMnemonic('a');
     fileMenu.add(new ExitAction()).setMnemonic('x');
     JMenu modeMenu = new JMenu("Mode");
@@ -303,6 +306,7 @@ public class SaltBoundaryPicker2 {
       System.exit(0);
     }
   }
+
   private class SaveAsPngAction extends AbstractAction {
     private PlotFrame _plotFrame;
     private SaveAsPngAction(PlotFrame plotFrame) {
@@ -320,8 +324,89 @@ public class SaltBoundaryPicker2 {
     }
   }
 
+  private class LoadSaltBoundary extends AbstractAction {
+    private SaltPicker2 _picker;
+    private LoadSaltBoundary(SaltPicker2 picker) {
+      super("Load salt boundary");
+      _picker = picker;
+    }
+    public void actionPerformed(ActionEvent event) {
+      JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+      fc.showOpenDialog(null);
+      File file = fc.getSelectedFile();
+      if (file!=null) {
+        String filename = file.getAbsolutePath();
+        float[][] ps = readFromFile(filename);
+        _picker.setBoundary(ps);
+        float[][] xs = _picker.getBoundary();
+        _boundaryView.set(xs[0],xs[1]);
+      }
+    }
+  }
+
+  private class SaveSaltBoundary extends AbstractAction {
+    private SaltPicker2 _picker;
+    private SaveSaltBoundary(SaltPicker2 picker) {
+      super("Save salt boundary");
+      _picker = picker;
+    }
+    public void actionPerformed(ActionEvent event) {
+      JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+      fc.showSaveDialog(null);
+      File file = fc.getSelectedFile();
+      if (file!=null) {
+        String filename = file.getAbsolutePath();
+        writeToFile(filename,_picker);
+      }
+    }
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // testing
+  //
+  /**
+   * Writes a salt boundary to a file with specified name.
+   * @param fileName the salt boundary file name.
+   * @param picker a 2d salt boundary picker 
+   */
+  public static void writeToFile(String fileName, SaltPicker2 picker) {
+    float[][] ps = picker.getBoundary();
+    int np = ps[0].length;
+    try {
+      ArrayOutputStream aos = new ArrayOutputStream(fileName);
+      aos.writeInt(np);
+      for (int ip=0; ip<np; ++ip) 
+        aos.writeFloat(ps[0][ip]); 
+      for (int ip=0; ip<np; ++ip) 
+        aos.writeFloat(ps[1][ip]); 
+      aos.close();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+    /**
+   * Returns a salt boundary read from a file with specified name.
+   * @param fileName the salt boundary file name.
+   * @return the salt boundary.
+   */
+  public static float[][] readFromFile(String fileName) {
+    float[][] ps;
+    try {
+      ArrayInputStream ais = new ArrayInputStream(fileName);
+      int np = ais.readInt();
+      ps = new float[2][np];
+      for (int ip=0; ip<np; ++ip) 
+        ps[0][ip] = ais.readFloat();
+      for (int ip=0; ip<np; ++ip) 
+        ps[1][ip] = ais.readFloat();
+      ais.close();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    return ps;
+  }
+
 
   private static float[][] readImage(int n1, int n2, String fileName) {
     try {
@@ -347,7 +432,7 @@ public class SaltBoundaryPicker2 {
     int n1 = 850;
     int n2 = 1000;
     float[][] image = 
-      readImage(n1,n2,"../../../data/seis/fls/bag/2d/sub2/gx.dat");
+      readImage(n1,n2,"../../data/cgg/sub2/gx.dat");
     image = gain(50,image);
     float pm = max(abs(image))/3;
     for (int i1=0; i1<n1; ++i1) {
@@ -360,7 +445,7 @@ public class SaltBoundaryPicker2 {
   private static void testSaltPickerB() {
     int n1 = 280;
     int n2 = 260;
-    float[][] image = readImage(n1,n2,"../../../data/seis/fls/bag/2d/sub1/gx.dat");
+    float[][] image = readImage(n1,n2,"../../data/cgg/sub1/gx.dat");
     image = gain(50,image);
     SaltBoundaryPicker2 sbp = new SaltBoundaryPicker2(image);
   }

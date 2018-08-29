@@ -79,6 +79,10 @@ public class SaltPicker2 {
     return new float[][]{_xus[0],_xus[1]};
   }
 
+  public void setBoundary(float[][] ps) { 
+    _xus=ps;
+  }
+
   public void smooth(float sig, float[] xu) {
     RecursiveExponentialFilter.Edges edges =
       RecursiveExponentialFilter.Edges.OUTPUT_ZERO_SLOPE;
