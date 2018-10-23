@@ -26,12 +26,6 @@ source code, you must first download and build the Mines JTK using
 [Gradle](http://www.gradle.org). The build process for software in
 this repository is the same.
 
-Like the Mines JTK, this is a toolkit for computer programmers. It is not a
-complete system for seismic interpretation of geologic horizons. Others
-(including commercial software companies) have built such systems using
-earlier versions of one or more of the software tools provided in this
-repository.
-
 ### Summary
 
 Here are brief descriptions of key components:
