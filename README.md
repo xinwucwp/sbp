@@ -13,7 +13,7 @@ If you find this work helpful in your research, please cite:
         title = {Fast salt boundary interpretation with optimal path picking},
         journal = {GEOPHYSICS},
         volume = {83},
-        number = {3},
+        issue = {3},
         pages = {O45-O53},
         year = {2018},
         doi = {10.1190/GEO2017-0481.1},
