@@ -42,8 +42,8 @@ public class SaltBoundaryPicker2 {
     PlotPanel.Orientation ppo = PlotPanel.Orientation.X1DOWN_X2RIGHT;
     PlotPanel.AxesPlacement ppap = PlotPanel.AxesPlacement.LEFT_TOP;
     _panel = new PlotPanel(1,1,ppo,ppap);
-    _panel.setHLimits(0,0,_n2-1);
-    _panel.setVLimits(0,0,_n1-1);
+    _panel.setHLimits(0,_n2-1);
+    _panel.setVLimits(0,_n1-1);
     // Image view.
     _imageView = _panel.addPixels(_image);
     _imageView.setInterpolation(PixelsView.Interpolation.NEAREST);
@@ -432,7 +432,7 @@ public class SaltBoundaryPicker2 {
     int n1 = 850;
     int n2 = 1000;
     float[][] image = 
-      readImage(n1,n2,"../../data/cgg/sub2/gx.dat");
+      readImage(n1,n2,"./data/cgg/sub2/gx.dat");
     image = gain(50,image);
     float pm = max(abs(image))/3;
     for (int i1=0; i1<n1; ++i1) {
@@ -445,7 +445,7 @@ public class SaltBoundaryPicker2 {
   private static void testSaltPickerB() {
     int n1 = 280;
     int n2 = 260;
-    float[][] image = readImage(n1,n2,"../../data/cgg/sub1/gx.dat");
+    float[][] image = readImage(n1,n2,"./data/cgg/sub1/gx.dat");
     image = gain(50,image);
     SaltBoundaryPicker2 sbp = new SaltBoundaryPicker2(image);
   }

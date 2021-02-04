@@ -4,12 +4,14 @@ defaultTasks 'compileJava'
 defaultTasks 'jar'
 
 description = "semiautomatic salt boundary picking"
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+//sourceCompatibility = 1.8
 
 sourceSets {
   main {
-    output.classesDir = 'build/classes'
-    output.resourcesDir = output.classesDir
+    //output.classesDir = 'build/classes'
+    //output.resourcesDir = output.classesDir
+    output.resourcesDir = file("build/classes")
     java {
       srcDir 'src'
       exclude '**/new/**','**/old/**'
@@ -25,7 +27,6 @@ jar {
 }
 
 dependencies {
-  compile fileTree('../jtk/core/build/libs') // for edu_mines_jtk.jar
-  compile fileTree('../libs') // jars provided with the Mines JTK
+  //compile fileTree('../jtk/core/build/libs') // for edu_mines_jtk.jar
   compile fileTree('libs') // jars used in research, not in the Mines JTK
 }
