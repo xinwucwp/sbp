@@ -20,11 +20,8 @@ If you find this work helpful in your research, please cite:
         URL = {https://library.seg.org/doi/abs/10.1190/geo2017-0481.1},
     }
 
-This software depends on that in the [Mines Java Toolkit
-(JTK)](https://github.com/dhale/jtk/). If you want to do more than browse the
-source code, you must first download and build the Mines JTK using
-[Gradle](http://www.gradle.org). The build process for software in
-this repository is the same.
+Please use gradle to build the codes.
+All the dependent libraries have been included in the ./libs folder.
 
 ### Summary
 
@@ -37,9 +34,9 @@ Implements the algorithm of optimal path picking
 Implements the interactive 2D salt boundary picker
 
 #### run a test
-cd src/sbp/
+cd sbp/
 
-type ../../j sbp.SaltBoundaryPicker2 to run the 2D demo
+type ./j sbp.SaltBoundaryPicker2 to run the 2D demo
 
 
 ---
